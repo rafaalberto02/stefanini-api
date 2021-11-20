@@ -7,8 +7,14 @@ services:
       dockerfile: Web Charge/Examples.Charge.API/Dockerfile
     depends_on:
       - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "80"
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
       SA_PASSWORD: "Master@123"
       ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
