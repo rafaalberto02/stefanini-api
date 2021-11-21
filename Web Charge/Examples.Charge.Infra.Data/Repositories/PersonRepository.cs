@@ -4,6 +4,9 @@ using Examples.Charge.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Examples.Charge.Infra.Data.Repositories
 {
@@ -16,6 +19,6 @@ namespace Examples.Charge.Infra.Data.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<Person>> FindAllAsync() => await Task.Run(() => _context.Person);
+        public async Task<IEnumerable<Person>> FindAllAsync() => await Task.Run(() => _context.Person.Include(person => person.Phones).ThenInclude(phone => phone.PhoneNumberType));
     }
 }
