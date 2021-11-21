@@ -21,6 +21,7 @@ namespace Examples.Charge.Infra.Data.Repositories
         public async Task<PersonPhone> Insert(PersonPhone phone)
         {
             await _context.PersonPhone.AddAsync(phone);
+            await _context.SaveChangesAsync();
             return phone;
         }
     }
