@@ -26,5 +26,8 @@ namespace Examples.Charge.API.Controllers
 
         [HttpPut]
         public async Task<ActionResult<PersonPhoneResponse>> Update([FromBody] PersonPhoneRequest request) => Response(await _facade.UpdateAsync(request));
+
+        [HttpDelete]
+        public async Task<ActionResult<PersonPhoneResponse>> Delete([FromBody] PersonPhoneRequest request) => Response(await _facade.DeleteAsync(request));
     }
 }

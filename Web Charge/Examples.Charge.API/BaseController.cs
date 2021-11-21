@@ -22,11 +22,12 @@ namespace Examples.Charge.API
             }
             else
             {
-                return Ok(new
+                /* return Ok(new
                 {
                     success = true,
                     data = response
-                });
+                }); */
+                return Ok(response);
             }
         }
 

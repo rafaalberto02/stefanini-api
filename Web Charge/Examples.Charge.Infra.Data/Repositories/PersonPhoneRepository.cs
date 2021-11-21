@@ -42,5 +42,17 @@ namespace Examples.Charge.Infra.Data.Repositories
             }
             return null;
         }
+
+        public async Task<IEnumerable<PersonPhone>> DeleteAsync(PersonPhone phone)
+        {
+            var result = await _context.PersonPhone.SingleOrDefaultAsync(pPhone => pPhone.BusinessEntityID == phone.BusinessEntityID && pPhone.PhoneNumberTypeID == phone.PhoneNumberTypeID);
+            if (result != null)
+            {
+                _context.PersonPhone.Remove(result);
+                await _context.SaveChangesAsync();
+                return await this.FindAllAsync();
+            }
+            return null;
+        }
     }
 }

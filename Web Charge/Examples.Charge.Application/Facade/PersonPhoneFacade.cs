@@ -22,6 +22,18 @@ namespace Examples.Charge.Application.Facade
             _personPhoneService = personPhoneService;
             _mapper = mapper;
         }
+
+        public async Task<PersonPhoneResponse> DeleteAsync(PersonPhoneRequest request)
+        {
+            PersonPhone phone = _mapper.Map<PersonPhone>(request);
+            var response = new PersonPhoneResponse();
+            var result = await _personPhoneService.DeleteAsync(phone);
+            response.PersonPhoneObjects = new List<PersonPhoneDto>();
+            response.PersonPhoneObjects.AddRange(result.Select(searchedPhone => _mapper.Map<PersonPhoneDto>(searchedPhone)));
+
+            return response;
+        }
+
         public async Task<PersonPhoneResponse> FindAllAsync()
         {
             var result = await _personPhoneService.FindAllAsync();
