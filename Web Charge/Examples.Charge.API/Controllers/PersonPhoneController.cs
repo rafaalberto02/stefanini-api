@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Examples.Charge.Application.Interfaces;
+using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Application.Messages.Response;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,5 +20,8 @@ namespace Examples.Charge.API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PersonPhoneResponse>> Get() => Response(await _facade.FindAllAsync());
+
+        [HttpPost]
+        public async Task<ActionResult<PersonPhoneResponse>> Insert([FromBody] PersonPhoneRequest request) => Response(await _facade.InsertAsync(request));
     }
 }

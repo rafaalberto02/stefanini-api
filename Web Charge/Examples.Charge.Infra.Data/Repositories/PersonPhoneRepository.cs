@@ -17,5 +17,11 @@ namespace Examples.Charge.Infra.Data.Repositories
         }
 
         public async Task<IEnumerable<PersonPhone>> FindAllAsync() => await Task.Run(() => _context.PersonPhone.Include(phone => phone.PhoneNumberType));
+
+        public async Task<PersonPhone> Insert(PersonPhone phone)
+        {
+            await _context.PersonPhone.AddAsync(phone);
+            return phone;
+        }
     }
 }
