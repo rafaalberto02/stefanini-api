@@ -7,5 +7,6 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     {
         Task<IEnumerable<PersonPhone>> FindAllAsync();
         Task<PersonPhone> Insert(PersonPhone phone);
+        Task<PersonPhone> Update(PersonPhone phone);
     }
 }

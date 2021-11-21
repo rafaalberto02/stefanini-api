@@ -40,5 +40,16 @@ namespace Examples.Charge.Application.Facade
 
             return response;
         }
+
+        public async Task<PersonPhoneResponse> UpdateAsync(PersonPhoneRequest request)
+        {
+            PersonPhone phone = _mapper.Map<PersonPhone>(request);
+            var response = new PersonPhoneResponse();
+            var result = await _personPhoneService.Update(phone);
+            response.PersonPhoneObjects = new List<PersonPhoneDto>();
+            response.PersonPhoneObjects.Add(_mapper.Map<PersonPhoneDto>(result));
+
+            return response;
+        }
     }
 }

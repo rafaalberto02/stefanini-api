@@ -20,9 +20,27 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         public async Task<PersonPhone> Insert(PersonPhone phone)
         {
+            var result = await _context.PersonPhone.SingleOrDefaultAsync(pPhone => pPhone.BusinessEntityID == phone.BusinessEntityID && pPhone.PhoneNumberTypeID == phone.PhoneNumberTypeID);
+            if (result != null)
+            {
+                _context.PersonPhone.Remove(result);
+            }
             await _context.PersonPhone.AddAsync(phone);
             await _context.SaveChangesAsync();
             return phone;
+        }
+
+        public async Task<PersonPhone> Update(PersonPhone phone)
+        {
+            var result = await _context.PersonPhone.SingleOrDefaultAsync(pPhone => pPhone.BusinessEntityID == phone.BusinessEntityID && pPhone.PhoneNumberTypeID == phone.PhoneNumberTypeID);
+            if (result != null)
+            {
+                _context.PersonPhone.Remove(result);
+                await _context.PersonPhone.AddAsync(phone);
+                await _context.SaveChangesAsync();
+                return phone;
+            }
+            return null;
         }
     }
 }

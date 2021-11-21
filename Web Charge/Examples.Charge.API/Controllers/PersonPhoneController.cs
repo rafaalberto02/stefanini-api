@@ -23,5 +23,8 @@ namespace Examples.Charge.API.Controllers
 
         [HttpPost]
         public async Task<ActionResult<PersonPhoneResponse>> Insert([FromBody] PersonPhoneRequest request) => Response(await _facade.InsertAsync(request));
+
+        [HttpPut]
+        public async Task<ActionResult<PersonPhoneResponse>> Update([FromBody] PersonPhoneRequest request) => Response(await _facade.UpdateAsync(request));
     }
 }

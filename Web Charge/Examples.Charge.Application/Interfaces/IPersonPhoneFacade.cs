@@ -9,5 +9,6 @@ namespace Examples.Charge.Application.Interfaces
     {
         Task<PersonPhoneResponse> FindAllAsync();
         Task<PersonPhoneResponse> InsertAsync(PersonPhoneRequest request);
+        Task<PersonPhoneResponse> UpdateAsync(PersonPhoneRequest phone);
     }
 }
