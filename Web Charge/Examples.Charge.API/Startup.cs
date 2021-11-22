@@ -67,7 +67,7 @@ namespace Examples.Charge.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             if (env.IsDevelopment())
             {
